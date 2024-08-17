@@ -1,3 +1,37 @@
-export const Panorama = () => {
- 
-}
+import * as Dialog from "@radix-ui/react-dialog";
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
+
+import { clsx } from "clsx";
+
+import styles from "./styles.module.scss";
+
+type TProps = {
+  name?: string;
+  open: boolean;
+  onClose: () => void;
+};
+
+export const Panorama = ({ name, open, onClose }: TProps) => {
+  return (
+    <Dialog.Root open={open} modal={false}>
+      <Dialog.Portal forceMount>
+        <Dialog.Content
+          forceMount
+          onEscapeKeyDown={onClose}
+          onPointerDownOutside={onClose}
+          onInteractOutside={onClose}
+          className={clsx(
+            styles.content,
+            open ? styles["content-open"] : styles["content-close"]
+          )}
+        >
+          <Dialog.Title>Панорама объекта <span>{name}</span></Dialog.Title>
+          
+          <Dialog.Description>
+            <VisuallyHidden.Root>Панорама выбранного объекта</VisuallyHidden.Root>
+          </Dialog.Description>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+};

@@ -14,12 +14,16 @@ import { Pixel } from "ol/pixel";
 
 import data from "../countries.json";
 import { Style, Fill, Stroke, Circle as CircleStyle } from "ol/style";
+
 import { Drawer } from "./drawer";
+import { Panorama } from "./panorama";
 
 type TCurrentObject = Record<"country" | "name", string> | undefined;
 
 export const MapComponent = () => {
   const [currentObject, setCurrentObject] = useState<TCurrentObject>();
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [panoOpen, setPanoOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const vectorSource = new VectorSource({
@@ -118,14 +122,17 @@ export const MapComponent = () => {
     map.on("singleclick", function (e) {
       map.forEachFeatureAtPixel(e.pixel, (feature) => {
         setCurrentObject(feature.getProperties() as TCurrentObject);
+        setDrawerOpen(true);
       });
     });
 
-    // map.on("dblclick", function (e) {
-    //   map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
-    //     alert();
-    //   });
-    // });
+    map.on("dblclick", function (e) {
+      e.stopPropagation();
+      map.forEachFeatureAtPixel(e.pixel, function (feature) {
+        setCurrentObject(feature.getProperties() as TCurrentObject);
+        setPanoOpen(true);
+      });
+    });
 
     return () => map.setTarget(undefined);
   }, []);
@@ -133,10 +140,23 @@ export const MapComponent = () => {
   return (
     <div id="map" style={{ width: "100vw", height: "100vh" }}>
       <div id="info" />
+
       <Drawer
-        open={Boolean(currentObject)}
-        onClose={() => setCurrentObject(undefined)}
+        open={Boolean(currentObject) && drawerOpen}
+        onClose={() => {
+          setCurrentObject(undefined);
+          setDrawerOpen(false);
+        }}
         country={currentObject?.country}
+        name={currentObject?.name}
+      />
+
+      <Panorama
+        open={Boolean(currentObject) && panoOpen}
+        onClose={() => {
+          setCurrentObject(undefined);
+          setPanoOpen(false);
+        }}
         name={currentObject?.name}
       />
     </div>
