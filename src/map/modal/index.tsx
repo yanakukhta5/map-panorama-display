@@ -18,7 +18,6 @@ export const Modal = ({ name, open, onClose }: TProps) => {
     <Dialog.Root open={open} modal={false}>
       <Dialog.Portal forceMount>
         <Dialog.Content
-          forceMount
           onEscapeKeyDown={onClose}
           onPointerDownOutside={onClose}
           onInteractOutside={onClose}

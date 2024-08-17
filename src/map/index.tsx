@@ -143,20 +143,14 @@ export const MapComponent = () => {
 
       <Drawer
         open={Boolean(currentObject) && drawerOpen}
-        onClose={() => {
-          setCurrentObject(undefined);
-          setDrawerOpen(false);
-        }}
+        onClose={() => setDrawerOpen(false)}
         country={currentObject?.country}
         name={currentObject?.name}
       />
 
       <Modal
         open={Boolean(currentObject) && modalOpen}
-        onClose={() => {
-          setCurrentObject(undefined);
-          setModalOpen(false);
-        }}
+        onClose={() => setModalOpen(false)}
         name={currentObject?.name}
       />
     </div>

@@ -15,7 +15,6 @@ export const Drawer = ({ country, name, open, onClose }: TProps) => {
     <Dialog.Root open={open} modal={false}>
       <Dialog.Portal forceMount>
         <Dialog.Content
-          forceMount
           onEscapeKeyDown={onClose}
           onPointerDownOutside={onClose}
           onInteractOutside={onClose}
@@ -25,6 +24,7 @@ export const Drawer = ({ country, name, open, onClose }: TProps) => {
           )}
         >
           <Dialog.Title>Информация о выбранном объекте</Dialog.Title>
+
           <Dialog.Description asChild>
             <div>
               <p>
