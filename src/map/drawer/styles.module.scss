@@ -1,0 +1,30 @@
+.content {
+  position: fixed;
+  padding: 10px 25px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  min-width: 400px;
+  transition: all 0.3s ease-in-out;
+  z-index: 100;
+
+  &-open {
+    right: 0;
+  }
+
+  &-close {
+    right: -100%;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  span {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+}

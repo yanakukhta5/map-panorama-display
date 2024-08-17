@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Эйфелева башня",
+        "country": "Франция",
+        "coordinates": [2.2945, 48.8584]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.2945, 48.8584]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Статуя Свободы",
+        "country": "США",
+        "coordinates": [-74.0445, 40.6892]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-74.0445, 40.6892]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Пирамида Хеопса",
+        "country": "Египет",
+        "coordinates": [31.1342, 29.9753]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.1342, 29.9753]
+      }
+    }
+  ]
+}
