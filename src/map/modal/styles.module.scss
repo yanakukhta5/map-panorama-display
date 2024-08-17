@@ -31,3 +31,9 @@
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   }
 }
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}

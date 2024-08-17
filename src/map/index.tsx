@@ -23,7 +23,7 @@ type TCurrentObject = Record<"country" | "name", string> | undefined;
 export const MapComponent = () => {
   const [currentObject, setCurrentObject] = useState<TCurrentObject>();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-  const [, setModalOpen] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const vectorSource = new VectorSource({
@@ -152,7 +152,7 @@ export const MapComponent = () => {
       />
 
       <Modal
-        open={Boolean(currentObject) || true}
+        open={Boolean(currentObject) && modalOpen}
         onClose={() => {
           setCurrentObject(undefined);
           setModalOpen(false);

@@ -15,7 +15,7 @@ type TProps = {
 
 export const Modal = ({ name, open, onClose }: TProps) => {
   return (
-    <Dialog.Root open={open}>
+    <Dialog.Root open={open} modal={false}>
       <Dialog.Portal forceMount>
         <Dialog.Content
           forceMount
