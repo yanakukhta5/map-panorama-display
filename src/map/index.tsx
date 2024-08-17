@@ -16,14 +16,14 @@ import data from "../countries.json";
 import { Style, Fill, Stroke, Circle as CircleStyle } from "ol/style";
 
 import { Drawer } from "./drawer";
-import { Panorama } from "./panorama";
+import { Modal } from "./modal";
 
 type TCurrentObject = Record<"country" | "name", string> | undefined;
 
 export const MapComponent = () => {
   const [currentObject, setCurrentObject] = useState<TCurrentObject>();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-  const [panoOpen, setPanoOpen] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const vectorSource = new VectorSource({
@@ -130,7 +130,7 @@ export const MapComponent = () => {
       e.stopPropagation();
       map.forEachFeatureAtPixel(e.pixel, function (feature) {
         setCurrentObject(feature.getProperties() as TCurrentObject);
-        setPanoOpen(true);
+        setModalOpen(true);
       });
     });
 
@@ -151,11 +151,11 @@ export const MapComponent = () => {
         name={currentObject?.name}
       />
 
-      <Panorama
-        open={Boolean(currentObject) && panoOpen}
+      <Modal
+        open={Boolean(currentObject) && modalOpen}
         onClose={() => {
           setCurrentObject(undefined);
-          setPanoOpen(false);
+          setModalOpen(false);
         }}
         name={currentObject?.name}
       />

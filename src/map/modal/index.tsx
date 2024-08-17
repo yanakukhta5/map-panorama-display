@@ -11,7 +11,7 @@ type TProps = {
   onClose: () => void;
 };
 
-export const Panorama = ({ name, open, onClose }: TProps) => {
+export const Modal = ({ name, open, onClose }: TProps) => {
   return (
     <Dialog.Root open={open} modal={false}>
       <Dialog.Portal forceMount>
