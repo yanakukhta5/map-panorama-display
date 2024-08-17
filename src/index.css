@@ -23,3 +23,10 @@ body {
   visibility: hidden;
   pointer-events: none;
 }
+
+.pnlm-about-msg {
+  visibility: hidden;
+   a {
+       visibility: hidden;
+     }
+ }
