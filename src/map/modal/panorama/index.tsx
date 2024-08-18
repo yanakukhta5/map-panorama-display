@@ -5,7 +5,7 @@ export const Panorama = () => {
     <ReactPannellum
       id="1"
       sceneId="firstScene"
-      imageSource="/public/pano.jpg"
+      imageSource="/panorams/pano.jpg"
       config={{
         autoRotate: -2,
         autoLoad: true,

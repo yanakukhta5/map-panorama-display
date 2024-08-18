@@ -4,15 +4,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 1,
+        "id": 2,
         "type": "traffic_light",
         "name": "Первый светофор",
         "country": "Россия",
-        "coordinates": [39.0312, 45.0355]
+        "coordinates": [39.014501124554414,45.02110123879321]
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [39.0312, 45.0355]
+        "coordinates": [39.014501124554414,45.02110123879321]
       }
     },
     {
@@ -22,11 +22,25 @@
         "type": "traffic_light",
         "name": "Второй светофор",
         "country": "Россия",
-        "coordinates": [39.034, 45.037]
+        "coordinates": [39.019081361145055,45.021268772827405]
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [39.034, 45.037]
+        "coordinates": [39.019081361145055,45.021268772827405]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "type": "traffic_light",
+        "name": "Третий светофор",
+        "country": "Россия",
+        "coordinates": [39.019729270612316,45.021381108777426]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [39.019729270612316,45.021381108777426]
       }
     }
   ]
