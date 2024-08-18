@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "author": "Yana Kukhta",
-  "repository": "https://github.com/yanakukhta5/fastify-server",
+  "repository": "https://github.com/yanakukhta5/map-panorama-display",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
