@@ -1,50 +1,51 @@
-# React + TypeScript + Vite
+# Описание проекта
+__endpoint 1:__
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Происходит обращение к списку предметов skinport (https://docs.skinport.com/#items)
+и возвращается массив объектов, где помимо прочего указаны две минимальные цены на предмет (одна цена — tradable, другая — нет); в эндпоинте используется кеширование
 
-Currently, two official plugins are available:
+__endpoint 2:__
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Есть табличка users с полями id и balance, там есть один юзер с id = 1
+- Реализована транзакция списания баланса пользователя
 
-## Expanding the ESLint configuration
+## Используемый стек
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- TypeScript
+- React
+- OpenLayers (отображение карты с использованием тайлов Open Street Map)
+- Pannellum (отображение панорам)
 
-- Configure the top-level `parserOptions` property like this:
+## Инструкция к запуску
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Установка Node.js и npm:
+   Убедитесь, что у вас установлены Node.js и npm. Вы можете скачать их с официального сайта [Node.js](https://nodejs.org/). Проверьте установку, запустив команды `node -v` и `npm -v` в терминале.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Клонирование репозитория:
+   Откройте терминал и выполните команду для клонирования репозитория:
+     
+    git clone URL_РЕПОЗИТОРИЯ .
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. Установка зависимостей:
+   Установите все необходимые зависимости из файла `package.json`:
+     
+    npm install
+  
+4. Запуск приложения:
+   Запустите сервер (см. раздел "Доступные скрипты").
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+5. Проверка работы сервера:
+   Откройте браузер и перейдите по адресу [http://localhost:5173](http://localhost:5173), чтобы убедиться, что сервер работает.
+
+## Доступные скрипты
+
+В этом проекте доступны следующие скрипты:
+
+### `npm run build`
+
+Этот скрипт запускает TypeScript компилятор (`tsc`) для компиляции TypeScript-файлов в JavaScript
+
+### `npm run dev`
+
+Начало разработки приложения в dev-моде.
+Откройте [http://localhost:3000](http://localhost:3000) чтобы увидеть результат обращения к эндпоинтам в браузере.

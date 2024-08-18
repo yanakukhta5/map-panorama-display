@@ -1,8 +1,10 @@
 {
   "name": "react-map",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "author": "Yana Kukhta",
+  "repository": "https://github.com/yanakukhta5/fastify-server",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
