@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Стройка района",
+        "country": "Россия"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [38.974, 45.035],
+            [38.975, 45.035],
+            [38.975, 45.036],
+            [38.974, 45.036],
+            [38.974, 45.035]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Парк",
+        "country": "Россия"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [38.976, 45.037],
+            [38.977, 45.037],
+            [38.977, 45.038],
+            [38.976, 45.038],
+            [38.976, 45.037]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "type": "traffic_light",
+        "name": "Первый светофор",
+        "country": "Россия",
+        "coordinates": [39.0312, 45.0355]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [39.0312, 45.0355]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "type": "traffic_light",
+        "name": "Второй светофор",
+        "country": "Россия",
+        "coordinates": [39.034, 45.037]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [39.034, 45.037]
+      }
+    }
+  ]
+}

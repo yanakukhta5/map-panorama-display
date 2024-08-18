@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "name": "Пешеход",
+        "country": "Россия"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [39.0246, 45.0355],
+          [39.026, 45.0368],
+          [39.0275, 45.038],
+          [39.029, 45.0395],
+          [39.0305, 45.0408]
+        ]
+      }
+    }
+  ]
+}

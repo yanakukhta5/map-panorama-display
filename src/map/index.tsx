@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
+
 import "ol/ol.css";
 import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
-
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import GeoJSON from "ol/format/GeoJSON";
-
 import Feature from "ol/Feature";
 import { Pixel } from "ol/pixel";
-
-import data from "../countries.json";
+import { fromLonLat } from "ol/proj";
 import { Style, Fill, Stroke, Circle as CircleStyle } from "ol/style";
+
+import semaphores from "../../public/geojson/semaphores.json";
+import line from "../../public/geojson/line.json";
+import roadCross from "../../public/geojson/road_cross.json";
 
 import { Drawer } from "./drawer";
 import { Modal } from "./modal";
@@ -26,44 +28,88 @@ export const MapComponent = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const vectorSource = new VectorSource({
-      features: new GeoJSON().readFeatures(data, {
+    const OSMLayer = new TileLayer({
+      source: new OSM(),
+    });
+
+    const roadCrossSource = new VectorSource({
+      features: new GeoJSON().readFeatures(roadCross, {
         featureProjection: "EPSG:3857",
       }),
     });
 
-    const vectorLayer = new VectorLayer({
-      source: vectorSource,
+    const roadCrossLayer = new VectorLayer({
+      source: roadCrossSource,
     });
 
-    const defaultStyle = new Style({
-      image: new CircleStyle({
-        radius: 5,
-        fill: new Fill({
-          color: "#88b1cb",
-        }),
-        stroke: new Stroke({
-          color: "#8477e9",
-          width: 1,
-        }),
+    const semaphoresSource = new VectorSource({
+      features: new GeoJSON().readFeatures(semaphores, {
+        featureProjection: "EPSG:3857",
       }),
     });
 
-    const highlightStyle = new Style({
-      image: new CircleStyle({
-        radius: 5,
-        fill: new Fill({
-          color: "#74e485",
-        }),
-        stroke: new Stroke({
-          color: "#2be634",
-          width: 1,
-        }),
+    const semaphoresLayer = new VectorLayer({
+      source: semaphoresSource,
+    });
+
+    const lineSource = new VectorSource({
+      features: new GeoJSON().readFeatures(line, {
+        featureProjection: "EPSG:3857",
       }),
     });
 
-    vectorSource.getFeatures().forEach((feature) => {
-      feature.setStyle(defaultStyle);
+    const lineLayer = new VectorLayer({
+      source: lineSource,
+    });
+
+    const defaultStroke = new Stroke({
+      color: "#8477e9",
+      width: 3,
+    });
+
+    const defaultStyles = {
+      Point: new Style({
+        image: new CircleStyle({
+          radius: 5,
+          fill: new Fill({
+            color: "#88b1cb",
+          }),
+          stroke: defaultStroke,
+        }),
+      }),
+      LineString: new Style({ stroke: defaultStroke }),
+      Polygon: new Style({ stroke: defaultStroke }),
+    };
+
+    const highlightStroke = new Stroke({
+      color: "#2be634",
+      width: 3,
+    });
+
+    const highlightStyles = {
+      Point: new Style({
+        image: new CircleStyle({
+          radius: 5,
+          fill: new Fill({
+            color: "#74e485",
+          }),
+          stroke: highlightStroke,
+        }),
+      }),
+      LineString: new Style({ stroke: highlightStroke }),
+      Polygon: new Style({ stroke: highlightStroke }),
+    };
+
+    semaphoresSource.getFeatures().forEach((feature) => {
+      feature.setStyle(defaultStyles.Point);
+    });
+
+    roadCrossSource.getFeatures().forEach((feature) => {
+      feature.setStyle(defaultStyles.Polygon);
+    });
+
+    lineSource.getFeatures().forEach((feature) => {
+      feature.setStyle(defaultStyles.LineString);
     });
 
     const info = document.getElementById("info") as HTMLDivElement;
@@ -77,18 +123,33 @@ export const MapComponent = () => {
           });
 
       if (feature !== currentFeature) {
-        if (currentFeature) {
-          currentFeature.setStyle(defaultStyle);
-        }
+        const featureType = feature
+          ?.getGeometry()
+          ?.getType() as keyof typeof defaultStyles;
+
+        const currentFeatureType = currentFeature
+          ?.getGeometry()
+          ?.getType() as keyof typeof defaultStyles;
+
+        if (currentFeature)
+          currentFeature.setStyle(defaultStyles[currentFeatureType]);
+
         if (feature) {
           info.style.left = pixel[0] + "px";
           info.style.top = pixel[1] + "px";
           info.style.visibility = "visible";
           const cords = feature.get("coordinates");
-          info.innerText = `${feature.get("name")} \n Долгота: ${
-            cords[0]
-          } \n Широта: ${cords[1]}`;
-          (feature as Feature).setStyle(highlightStyle);
+          const featureName = feature.get("name");
+          if (featureType === "Point") {
+            info.innerText = `${featureName} \n Долгота: ${cords[0]} \n Широта: ${cords[1]}`;
+          }
+          if (featureType === "LineString") {
+            info.innerText = `Дорога ${featureName}`;
+          }
+          if (featureType === "Polygon") {
+            info.innerText = `Область ${featureName}`;
+          }
+          (feature as Feature).setStyle(highlightStyles[featureType]);
         } else {
           info.style.visibility = "hidden";
         }
@@ -98,16 +159,11 @@ export const MapComponent = () => {
 
     const map = new Map({
       target: "map",
-      layers: [
-        new TileLayer({
-          source: new OSM(),
-        }),
-        vectorLayer,
-      ],
       view: new View({
-        center: [0, 0],
-        zoom: 2,
+        center: fromLonLat([39.0312, 45.0355]),
+        zoom: 14,
       }),
+      layers: [OSMLayer, semaphoresLayer, lineLayer, roadCrossLayer],
     });
 
     map.on("pointermove", function (evt) {
