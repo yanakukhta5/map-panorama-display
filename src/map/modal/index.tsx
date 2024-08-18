@@ -1,17 +1,17 @@
-import * as Dialog from "@radix-ui/react-dialog";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import * as Dialog from '@radix-ui/react-dialog'
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
 
-import { clsx } from "clsx";
+import { clsx } from 'clsx'
 
-import { Panorama } from "./panorama";
+import { Panorama } from './panorama'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
 type TProps = {
-  name?: string;
-  open: boolean;
-  onClose: () => void;
-};
+  name?: string
+  open: boolean
+  onClose: () => void
+}
 
 export const Modal = ({ name, open, onClose }: TProps) => {
   return (
@@ -23,7 +23,7 @@ export const Modal = ({ name, open, onClose }: TProps) => {
           onInteractOutside={onClose}
           className={clsx(
             styles.content,
-            open ? styles["content-open"] : styles["content-close"]
+            open ? styles['content-open'] : styles['content-close']
           )}
         >
           <Dialog.Title>
@@ -40,5 +40,5 @@ export const Modal = ({ name, open, onClose }: TProps) => {
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
-  );
-};
+  )
+}

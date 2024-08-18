@@ -1,9 +1,7 @@
-import { MapComponent } from "./map"
+import { MapComponent } from './map'
 
 function App() {
-  return (
-    <MapComponent />
-  )
+  return <MapComponent />
 }
 
 export default App

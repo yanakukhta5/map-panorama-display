@@ -1,4 +1,4 @@
-import ReactPannellum from "react-pannellum";
+import ReactPannellum from 'react-pannellum'
 
 export const Panorama = () => {
   return (
@@ -9,9 +9,9 @@ export const Panorama = () => {
       config={{
         autoRotate: -2,
         autoLoad: true,
-        title: "Панорама",
-        description: "Описание этой панорамы",
+        title: 'Панорама',
+        description: 'Описание этой панорамы',
       }}
     />
-  );
-};
+  )
+}

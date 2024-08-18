@@ -1,14 +1,14 @@
-import * as Dialog from "@radix-ui/react-dialog";
-import { clsx } from "clsx";
+import * as Dialog from '@radix-ui/react-dialog'
+import { clsx } from 'clsx'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
 type TProps = {
-  country?: string;
-  name?: string;
-  open: boolean;
-  onClose: () => void;
-};
+  country?: string
+  name?: string
+  open: boolean
+  onClose: () => void
+}
 
 export const Drawer = ({ country, name, open, onClose }: TProps) => {
   return (
@@ -20,7 +20,7 @@ export const Drawer = ({ country, name, open, onClose }: TProps) => {
           onInteractOutside={onClose}
           className={clsx(
             styles.content,
-            open ? styles["content-open"] : styles["content-close"]
+            open ? styles['content-open'] : styles['content-close']
           )}
         >
           <Dialog.Title>Информация о выбранном объекте</Dialog.Title>
@@ -39,5 +39,5 @@ export const Drawer = ({ country, name, open, onClose }: TProps) => {
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
-  );
-};
+  )
+}
