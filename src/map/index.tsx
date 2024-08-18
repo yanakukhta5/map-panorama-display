@@ -13,9 +13,9 @@ import { Pixel } from "ol/pixel";
 import { fromLonLat } from "ol/proj";
 import { Style, Fill, Stroke, Circle as CircleStyle } from "ol/style";
 
-import semaphores from "../../public/geojson/semaphores.json";
-import line from "../../public/geojson/line.json";
-import roadCross from "../../public/geojson/road_cross.json";
+import semaphores from "./geojson/semaphores.json";
+import line from "./geojson/line.json";
+import roadCross from "./geojson/road_cross.json";
 
 import { Drawer } from "./drawer";
 import { Modal } from "./modal";
